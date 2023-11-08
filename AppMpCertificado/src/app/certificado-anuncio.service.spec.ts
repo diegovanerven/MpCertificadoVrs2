@@ -1,16 +1,31 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AppComponent } from './app.component';
+import { expect } from 'chai';
+import CertificadoAnuncio from './CertificadoAnuncio';
 
-import { CertificadoAnuncioService } from './certificado-anuncio.service';
-
-describe('CertificadoAnuncioService', () => {
-  let service: CertificadoAnuncioService;
+describe('AppComponent', () => {
+  let fixture: ComponentFixture<CertificadoAnuncio>;
+  let app: CertificadoAnuncio;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(CertificadoAnuncioService);
+    TestBed.configureTestingModule({
+      declarations: [CertificadoAnuncio],
+    });
+    fixture = TestBed.createComponent(CertificadoAnuncio);
+    app = fixture.componentInstance;
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('should create the app', () => {
+    expect(app).to.exist;
+  });
+
+  it(`should have as title 'AppMpCertificado'`, () => {
+    expect(app.title).to.equal('AppMpCertificado');
+  });
+
+  it('should render title', () => {
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.content span')?.textContent).to.contain('AppMpCertificado app is running');
   });
 });
