@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { CertificadoAnunciosService } from 'C:/Users/diego/source/repos/MpCertificadoVrs2/AppMpCertificado/src/app/certificado-anuncios.service';
-import { CertificadoAnuncio } from 'C:/Users/diego/source/repos/MpCertificadoVrs2/AppMpCertificado/src/app/CertificadoAnuncio'; // Ajuste no caminho
+import { CertificadoAnunciosService } from 'src/app/certificado-anuncios.service'; // Caminho relativo ao serviço
+import { CertificadoAnuncio } from 'src/app/CertificadoAnuncio'; // Caminho relativo ao modelo
 
 @Component({
   selector: 'app-certificado-anuncios',
@@ -18,7 +18,15 @@ export class CertificadoAnunciosComponent implements OnInit {
     this.tituloFormulario = 'Novo Anúncio de Certificado';
     this.formulario = new FormGroup({
       idCertificadoA: new FormControl(null),
-      descricao: new FormControl(null)
+      tipoDeCliente: new FormControl(null),
+      tipoDeDispositivo: new FormControl(null),
+      fabricante: new FormControl(null),
+      idFabricante: new FormControl(null),
+      tempoDeValidade: new FormControl(null),
+      tipoDeEmissao: new FormControl(null),
+      valor: new FormControl(null),
+      tipoCertificadoA1A3: new FormControl(null),
+      title: new FormControl(null),
     });
   }
 

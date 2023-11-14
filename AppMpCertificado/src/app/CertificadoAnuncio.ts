@@ -7,9 +7,10 @@ export class CertificadoAnuncio {
   TempoDeValidade: string = '';
   TipoDeEmissao: string = '';
   Valor: number = 0;
-  TipoCertificadoA1A3: string = ''; // Adicionando a propriedade do tipo de certificado A1 ou A3
-  title: string = ''; // Definindo o tipo da propriedade title como string
+  TipoCertificadoA1A3: string = '';
+  title: string = '';
 }
+
 
 export default CertificadoAnuncio;
 
