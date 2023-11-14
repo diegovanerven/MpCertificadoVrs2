@@ -1,30 +1,35 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 
-// Defina as rotas
-const routes: Routes = [
-  { path: 'Certificados', component: CertificadoAnuncioComponent }, // Exemplo de rota case-sensitive
-  // Adicione outras rotas conforme necessário
-];
+import { ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap/modal';
+
+import { CertificadoAnunciosService } from './certificado-anuncios.service';
+import { CertificadoAnunciosComponent } from './components/certificado-anuncios/certificado-anuncios.component';
 
 @NgModule({
-  declarations: [
+       declarations: [
       // AppComponent,
      CertificadoAnunciosComponent,
-  ],
+     ],
   imports: [
     BrowserModule,
+    FormsModule,
+    AppRoutingModule,
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
   ],
-  providers: [CertificadoAnuncioService],
+  providers: [HttpClientModule, CertificadoAnunciosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

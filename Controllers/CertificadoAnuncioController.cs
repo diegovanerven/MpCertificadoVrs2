@@ -42,7 +42,7 @@ namespace MpCertificadoVrs2.Controllers
         }
 
         [HttpPost]
-        [HttpPost]
+        [Route("cadastar")]
         public ActionResult<CertificadoAnuncio> PostCertificado([FromBody] CertificadoAnuncio certificado)
         {
             _context.CertificadoAnuncios.Add(certificado);
