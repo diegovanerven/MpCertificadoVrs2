@@ -7,7 +7,7 @@ using MpCertificadoVrs2.Models;
 
 namespace MpCertificadoVrs2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("Certificadora/[controller]")]
     [ApiController]
     public class AcCertificadoraController : ControllerBase
     {
@@ -18,15 +18,15 @@ namespace MpCertificadoVrs2.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<AcCertificadoraTeste>>> GetAcCertificadoras()
+        [HttpGet("Listar")]
+        public async Task<ActionResult<IEnumerable<AcCertificadoraTeste>>> ListarAcCertificadoras()
         {
             var certificadoras = await _context.AcCertificadoraTestes.ToListAsync();
             return Ok(certificadoras);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<AcCertificadoraTeste>> GetAcCertificadora(int id)
+        [HttpGet("Buscar/{id}")]
+        public async Task<ActionResult<AcCertificadoraTeste>> BuscarAcCertificadora(int id)
         {
             var certificadora = await _context.AcCertificadoraTestes.FindAsync(id);
 
@@ -38,17 +38,17 @@ namespace MpCertificadoVrs2.Controllers
             return Ok(certificadora);
         }
 
-        [HttpPost]
-        public async Task<ActionResult<AcCertificadoraTeste>> PostAcCertificadora(AcCertificadoraTeste certificadora)
+        [HttpPost("Cadastrar")]
+        public async Task<ActionResult<AcCertificadoraTeste>> CadastrarAcCertificadora(AcCertificadoraTeste certificadora)
         {
             _context.AcCertificadoraTestes.Add(certificadora);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAcCertificadora", new { id = certificadora.IdCertificadora }, certificadora);
+            return CreatedAtAction(nameof(BuscarAcCertificadora), new { id = certificadora.IdCertificadora }, certificadora);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAcCertificadora(int id, AcCertificadoraTeste certificadora)
+        [HttpPut("Atualizar/{id}")]
+        public async Task<IActionResult> AtualizarAcCertificadora(int id, AcCertificadoraTeste certificadora)
         {
             if (id != certificadora.IdCertificadora)
             {
@@ -76,8 +76,8 @@ namespace MpCertificadoVrs2.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAcCertificadora(int id)
+        [HttpDelete("Excluir/{id}")]
+        public async Task<IActionResult> ExcluirAcCertificadora(int id)
         {
             var certificadora = await _context.AcCertificadoraTestes.FindAsync(id);
             if (certificadora == null)

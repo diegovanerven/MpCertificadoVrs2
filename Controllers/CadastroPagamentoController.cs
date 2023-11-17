@@ -2,13 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MpCertificadoVrs2.data;
 using MpCertificadoVrs2.Models;
-using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MpCertificadoVrs2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("Pagamento/[controller]")]
     [ApiController]
     public class CadastroPagamentoController : ControllerBase
     {
@@ -19,16 +18,14 @@ namespace MpCertificadoVrs2.Controllers
             _context = context;
         }
 
-        // GET: api/CadastroPagamento
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<CadastroPagamento>>> GetCadastroPagamentos()
+        [HttpGet("Listar")]
+        public async Task<ActionResult<IEnumerable<CadastroPagamento>>> ListarCadastroPagamentos()
         {
             return await _context.CadastroPagamentos.ToListAsync();
         }
 
-        // GET: api/CadastroPagamento/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<CadastroPagamento>> GetCadastroPagamento(int id)
+        [HttpGet("Buscar/{id}")]
+        public async Task<ActionResult<CadastroPagamento>> BuscarCadastroPagamento(int id)
         {
             var cadastroPagamento = await _context.CadastroPagamentos.FindAsync(id);
 
@@ -40,19 +37,17 @@ namespace MpCertificadoVrs2.Controllers
             return cadastroPagamento;
         }
 
-        // POST: api/CadastroPagamento
-        [HttpPost]
-        public async Task<ActionResult<CadastroPagamento>> PostCadastroPagamento(CadastroPagamento cadastroPagamento)
+        [HttpPost("Cadastrar")]
+        public async Task<ActionResult<CadastroPagamento>> CadastrarCadastroPagamento(CadastroPagamento cadastroPagamento)
         {
             _context.CadastroPagamentos.Add(cadastroPagamento);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCadastroPagamento", new { id = cadastroPagamento.IdCartao }, cadastroPagamento);
+            return CreatedAtAction(nameof(BuscarCadastroPagamento), new { id = cadastroPagamento.IdCartao }, cadastroPagamento);
         }
 
-        // PUT: api/CadastroPagamento/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCadastroPagamento(int id, CadastroPagamento cadastroPagamento)
+        [HttpPut("Atualizar/{id}")]
+        public async Task<IActionResult> AtualizarCadastroPagamento(int id, CadastroPagamento cadastroPagamento)
         {
             if (id != cadastroPagamento.IdCartao)
             {
@@ -80,9 +75,8 @@ namespace MpCertificadoVrs2.Controllers
             return NoContent();
         }
 
-        // DELETE: api/CadastroPagamento/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<CadastroPagamento>> DeleteCadastroPagamento(int id)
+        [HttpDelete("Excluir/{id}")]
+        public async Task<ActionResult<CadastroPagamento>> ExcluirCadastroPagamento(int id)
         {
             var cadastroPagamento = await _context.CadastroPagamentos.FindAsync(id);
             if (cadastroPagamento == null)

@@ -20,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AppCertificado\src\app\Components\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 

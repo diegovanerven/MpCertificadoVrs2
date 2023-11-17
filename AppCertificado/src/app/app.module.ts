@@ -13,10 +13,18 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AnunciosService } from './anuncios.service';
 import { AnunciosComponent } from './Components/anuncios/anuncios.component';
 
+import { CertificadorasComponent } from './Components/certificadoras/certificadoras.component';
+import { CertificadorasService } from './certificadoras.service';
+
+import { PagamentosService } from './pagamentos.service';
+import { PagamentosComponent } from './Components/pagamentos/pagamentos.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    AnunciosComponent  // Corrigido o nome do componente para 'AnunciosComponent'
+    AnunciosComponent,
+    CertificadorasComponent,
+    PagamentosComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +34,11 @@ import { AnunciosComponent } from './Components/anuncios/anuncios.component';
     ReactiveFormsModule,
     ModalModule.forRoot()
   ],
-  providers: [AnunciosService],  // Removido HttpClientModule dos provedores
+  providers: [
+    AnunciosService,
+    CertificadorasService,
+    PagamentosService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
