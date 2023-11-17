@@ -11,7 +11,7 @@ using MpCertificadoVrs2.Models;
 
 namespace MpCertificadoVrs2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("MpCertificadoAnuncio/[controller]")]
     [ApiController]
     public class CertificadoAnuncioController : ControllerBase
     {
@@ -22,16 +22,16 @@ namespace MpCertificadoVrs2.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<CertificadoAnuncio>> GetCertificados()
+        [HttpGet("Listar")]
+        public ActionResult<IEnumerable<CertificadoAnuncio>> ListarCertificados()
         {
             return _context.CertificadoAnuncios.ToList();
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<CertificadoAnuncio> GetCertificado(int id)
+        [HttpGet("Buscar/{idCertificadoA}")]
+        public ActionResult<CertificadoAnuncio> BuscarCertificado(int idCertificadoA)
         {
-            var certificado = _context.CertificadoAnuncios.Find(id);
+            var certificado = _context.CertificadoAnuncios.Find(idCertificadoA);
 
             if (certificado == null)
             {
@@ -41,20 +41,19 @@ namespace MpCertificadoVrs2.Controllers
             return certificado;
         }
 
-        [HttpPost]
-        [HttpPost]
-        public ActionResult<CertificadoAnuncio> PostCertificado([FromBody] CertificadoAnuncio certificado)
+        [HttpPost("Cadastrar")]
+        public ActionResult<CertificadoAnuncio> CadastrarCertificado([FromBody] CertificadoAnuncio certificado)
         {
             _context.CertificadoAnuncios.Add(certificado);
             _context.SaveChanges();
 
-            return CreatedAtAction(nameof(GetCertificado), new { id = certificado.IdCertificadoA }, certificado);
+            return CreatedAtAction(nameof(BuscarCertificado), new { id = certificado.IdCertificadoA }, certificado);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult PutCertificado(int id, CertificadoAnuncio certificado)
+        [HttpPut("Atualizar/{idCertificadoA}")]
+        public IActionResult AtualizarCertificado(int idCertificadoA, CertificadoAnuncio certificado)
         {
-            if (id != certificado.IdCertificadoA)
+            if (idCertificadoA != certificado.IdCertificadoA)
             {
                 return BadRequest();
             }
@@ -65,10 +64,10 @@ namespace MpCertificadoVrs2.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteCertificado(int id)
+        [HttpDelete("Excluir/{idCertificadoA}")]
+        public IActionResult ExcluirCertificado(int idCertificadoA)
         {
-            var certificado = _context.CertificadoAnuncios.Find(id);
+            var certificado = _context.CertificadoAnuncios.Find(idCertificadoA);
 
             if (certificado == null)
             {
