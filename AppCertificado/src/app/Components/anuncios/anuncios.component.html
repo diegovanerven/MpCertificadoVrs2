@@ -1,0 +1,51 @@
+<div class="container p-5">
+  <div class="row">
+    <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formulario">
+      <h6>{{ tituloFormulario }}</h6>
+      <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+        <div class="form-group">
+          <label>ID do certificado A</label>
+          <input type="text" class="form-control form-control-sm" formControlName="IdCertificadoA" />
+        </div>
+        <div class="form-group">
+          <label>Tipo de cliente</label>
+          <input type="text" class="form-control form-control-sm" formControlName="TipoDeCliente" />
+        </div>
+        <div class="form-group">
+          <label>Tipo de dispositivo</label>
+          <input type="text" class="form-control form-control-sm" formControlName="TipoDeDispositivo" />
+        </div>
+        <div class="form-group">
+          <label>Fabricante</label>
+          <input type="text" class="form-control form-control-sm" formControlName="Fabricante" />
+        </div>
+        <div class="form-group">
+          <label>ID do fabricante</label>
+          <input type="text" class="form-control form-control-sm" formControlName="IdFabricante" />
+        </div>
+        <div class="form-group">
+          <label>Tempo de validade</label>
+          <input type="text" class="form-control form-control-sm" formControlName="TempoDeValidade" />
+        </div>
+        <div class="form-group">
+          <label>Tipo de emissão</label>
+          <input type="text" class="form-control form-control-sm" formControlName="TipoDeEmissao" />
+        </div>
+        <div class="form-group">
+          <label>Valor</label>
+          <input type="text" class="form-control form-control-sm" formControlName="Valor" />
+        </div>
+        <div class="container">
+          <div class="row">
+            <div>
+              <button type="submit" class="btn btn-sm btn-outline-secondary">Salvar</button>
+            </div>
+            <div class="pl-1">
+              <button type="button" class="btn btn-sm btn-light">Voltar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
